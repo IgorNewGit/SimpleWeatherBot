@@ -19,7 +19,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>com.igornewgit.bot.StartTheBot</mainClass>
+                            <mainClass>bot.src.com.igornewgit.bot.StartTheBot</mainClass>
                             <name>workerBot</name>
                         </program>
                     </programs>
