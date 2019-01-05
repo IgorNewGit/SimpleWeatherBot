@@ -1,1 +1,1 @@
-web: java -jar target/simpleweatherbot.jar
+worker: sh target/bin/workerBot
