@@ -1,5 +1,3 @@
-package com.igornewgit.bot;
-
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -7,7 +5,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class WeatherBot extends TelegramLongPollingBot {
 
-    @Override
+    //@Override
     public void onUpdateReceived(Update update) {
         SendMessage message = new SendMessage();
         message.setText(update.getMessage().getText());
@@ -19,7 +17,7 @@ public class WeatherBot extends TelegramLongPollingBot {
         }
     }
 
-    @Override
+    //@Override
     public String getBotUsername() {
         return BotConstatnts.USER_NAME;
     }
