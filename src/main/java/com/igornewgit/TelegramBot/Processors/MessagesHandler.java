@@ -36,7 +36,7 @@ public class MessagesHandler {
                     "Use /weather to see the weather in default city" + "\n" +
                     "A default city is your current city and you don't have to waste time to state it in requests each time"
                     + "\n" +
-                    "You can change your default city by /setDefaultCity command"
+                    "You can change your default city by request \"dc Chicago\""
                     + "\n" +
                     "To learn what is default city now use /whatIsDefaultCity command"
                     + "\n" +
@@ -73,7 +73,7 @@ public class MessagesHandler {
 
         //learn User's request from first word and process second word
         // 1) the User wants to change default city by request: "/setDefaultCity San Francisco"
-        if(complexRequest[0].equals("/setdefaultcity")) {
+        if(complexRequest[0].equals("dc")) {
             setDefaultCity(theCity);
             return "Now default city is " + defaultCity;
         }
