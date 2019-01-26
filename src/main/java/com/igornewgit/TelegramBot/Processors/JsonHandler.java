@@ -23,7 +23,7 @@ public class JsonHandler {
         //Send a request to Weather Server
         JSONObject jsonMessage = sendRequestToServer(city);
         //retrieve result message for user
-        return BuildMessageToUser(jsonMessage, city);
+        return BuildMessageToUser(jsonMessage);
     }
 
     private static JSONObject sendRequestToServer(String city) throws IOException, URISyntaxException {
@@ -42,15 +42,13 @@ public class JsonHandler {
         return new JSONObject(IOUtils.toString(response.getEntity().getContent()));
     }
 
-    private static String BuildMessageToUser(JSONObject jsonMessage, String city) {
+    private static String BuildMessageToUser(JSONObject jsonMessage) {
         //Now start to construct the message to the user
         //retrieve a temperature from JSON and transfer it in celsius
         Double temperuture = Double.parseDouble(jsonMessage.getJSONObject("main").get("temp").toString())-273.15;
 
         //start to build the result message to the user
-        StringBuilder resultMessage = new StringBuilder("The weather in ")
-                .append(city + ":")
-                .append("\n")
+        StringBuilder resultMessage = new StringBuilder()
                 .append(String.format("%.1f",temperuture) + " C, ");
 
         //retrieve weather conditions and add add it to result message

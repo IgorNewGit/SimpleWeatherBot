@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 
 public class MessagesHandler {
 
-
     private String messageFromUser;
     private String messageToUser;
     private static String defaultCity = "Moscow";
@@ -36,24 +35,25 @@ public class MessagesHandler {
                     "Use /weather to see the weather in default city" + "\n" +
                     "A default city is your current city and you don't have to waste time to state it in requests each time"
                     + "\n" +
-                    "You can change your default city by request \"dc Chicago\""
+                    "You can change your default city by request \"Dc Chicago\""
                     + "\n" +
                     "To learn what is default city now use /whatIsDefaultCity command"
                     + "\n" +
-                    "To learn the weather in another city just ask the bot \"weather New York\""
+                    "To learn the weather in another city just ask the bot \"Weather New York\""
                     + "\n" + "\n" +
                     "Enjoy and don't hesitate to ask me help again :)";
         }
 
         if(messageFromUser.toLowerCase().equals("/whatisdefaultcity")) {
-            return "Now default city is " + getDefaultCity();
+            return "Now default city is " + makeFirstLetterUpperCase(getDefaultCity());
         }
 
 
         //process weather request
 
         if (messageFromUser.toLowerCase().equals("/weather")) {
-            return sendMessageToWeatherApiAndGetResponse(defaultCity) + "\n" + "/help";
+            return "The weather in " + makeFirstLetterUpperCase(getDefaultCity()) + ":" + "\n" +
+                    sendMessageToWeatherApiAndGetResponse(defaultCity) + "\n" + "/help";
         }
 
 
@@ -75,12 +75,13 @@ public class MessagesHandler {
         // 1) the User wants to change default city by request: "/setDefaultCity San Francisco"
         if(complexRequest[0].equals("dc")) {
             setDefaultCity(theCity);
-            return "Now default city is " + defaultCity;
+            return "Now default city is " + makeFirstLetterUpperCase(getDefaultCity());
         }
 
         // 2) the User wants to learn the weather in another city: weather London
         if (complexRequest[0].equals("weather")) {
-            return sendMessageToWeatherApiAndGetResponse(theCity) + "\n" + "/help";
+            return "The weather in " + makeFirstLetterUpperCase(theCity) + ":" + "\n"
+                    + sendMessageToWeatherApiAndGetResponse(theCity) + "\n" + "/help";
         }
         return "Invalid data is entered. Try again";
     }
@@ -93,6 +94,20 @@ public class MessagesHandler {
         } catch (URISyntaxException e) {
             return "Problem with connection. Try again later";
         }
+    }
+
+    public String makeFirstLetterUpperCase(String oldString) {
+        StringBuilder builder = new StringBuilder(oldString);
+        //make first symbol to Upper Case if it is a letter
+        if (Character.isAlphabetic(oldString.codePointAt(0)))
+            builder.setCharAt(0, Character.toUpperCase(oldString.charAt(0)));
+
+        //change letters after space
+        for (int i = 1; i < oldString.length(); i++)
+            if (Character.isAlphabetic(oldString.charAt(i)) && Character.isSpaceChar(oldString.charAt(i - 1)))
+                builder.setCharAt(i, Character.toUpperCase(oldString.charAt(i)));
+
+        return builder.toString();
     }
 
     public void setDefaultCity(String defaultCity) {
