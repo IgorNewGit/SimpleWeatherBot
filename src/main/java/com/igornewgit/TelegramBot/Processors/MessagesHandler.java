@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class MessagesHandler {
-    
+
 
     private String messageFromUser;
     private String messageToUser;
