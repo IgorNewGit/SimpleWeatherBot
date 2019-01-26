@@ -8,7 +8,7 @@ public class MessagesHandler {
 
     private String messageFromUser;
     private String messageToUser;
-    private String defaultCity = "Moscow";
+    private static String defaultCity = "Moscow";
 
     public MessagesHandler() {
     }
