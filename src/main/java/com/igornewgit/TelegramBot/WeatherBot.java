@@ -8,6 +8,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class WeatherBot extends TelegramLongPollingBot {
 
+
     //@Override
     public void onUpdateReceived(Update update) {
         // 1. receive a message from user

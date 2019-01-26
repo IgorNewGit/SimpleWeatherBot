@@ -2,10 +2,9 @@ package com.igornewgit.TelegramBot.Processors;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 public class MessagesHandler {
-
+    
 
     private String messageFromUser;
     private String messageToUser;
@@ -46,7 +45,7 @@ public class MessagesHandler {
                     "Enjoy and don't hesitate to ask me help again :)";
         }
 
-        if(messageFromUser.toLowerCase().equals("/whatIsDefaultCity")) {
+        if(messageFromUser.toLowerCase().equals("/whatisdefaultcity")) {
             return "Now default city is " + getDefaultCity();
         }
 
@@ -67,17 +66,19 @@ public class MessagesHandler {
         //because city could have some words let's sum other words
         String theCity = new String();
         for(int i = 1; i < complexRequest.length; i++) {
-            theCity = theCity + complexRequest[i];
+            theCity = theCity + complexRequest[i] + " ";
         }
+        theCity = theCity.trim();
 
 
         //learn User's request from first word and process second word
         // 1) the User wants to change default city by request: "/setDefaultCity San Francisco"
-        if(complexRequest[0].equals("/setDefaultCity")) {
+        if(complexRequest[0].equals("/setdefaultcity")) {
             setDefaultCity(theCity);
             return "Now default city is " + defaultCity;
         }
 
+        // 2) the User wants to learn the weather in another city: weather London
         if (complexRequest[0].equals("weather")) {
             return sendMessageToWeatherApiAndGetResponse(theCity) + "\n" + "/help";
         }
