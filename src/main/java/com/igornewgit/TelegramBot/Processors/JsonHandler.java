@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 
 public class JsonHandler {
 
+
     public JsonHandler() {}
 
     public static String getResponse(String city) throws IOException, URISyntaxException {
