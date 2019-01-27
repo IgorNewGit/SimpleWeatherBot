@@ -33,7 +33,7 @@ public class JsonHandler {
                 .setHost("api.openweathermap.org")
                 .setPath("/data/2.5/weather")
                 .setParameter("q",city)
-                .setParameter("APPID", BotConstatnts.WEATHER_TOKEN)
+                .setParameter("APPID", BotConstatnts.WEATHER_API_TOKEN)
                 .build();
         HttpGet request = new HttpGet(uri);
 
